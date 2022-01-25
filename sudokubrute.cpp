@@ -412,7 +412,8 @@ begin:
     }
     if (isCorrect(a) || count > 1000)
     {
-        cout << "Exit with " << filled << " filled and count " << count << "\n";
+        // cout << "Exit with " << filled << " filled and count " << count << "\n";
+        cout<<"Answer is\n";
         printSudo(a);
     }
     else

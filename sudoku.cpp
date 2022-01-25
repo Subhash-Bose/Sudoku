@@ -372,17 +372,6 @@ bool checkSpecial3(int a[9][9], int i, int j, int x)
 }
 int main()
 {
-    // int a[9][9] = {
-    //     {5, 4, 0, 0, 2, 0, 8, 0, 6},
-    //     {0, 1, 9, 0, 0, 7, 0, 0, 3},
-    //     {0, 0, 0, 3, 0, 0, 2, 1, 0},
-    //     {9, 0, 0, 4, 6, 5, 0, 2, 0},
-    //     {0, 0, 1, 0, 0, 0, 6, 0, 4},
-    //     {6, 0, 4, 0, 3, 2, 0, 8, 0},
-    //     {0, 6, 0, 0, 0, 0, 1, 9, 0},
-    //     {4, 0, 2, 0, 0, 9, 0, 0, 5},
-    //     {0, 9, 0, 0, 7, 0, 4, 0, 2},
-    // };
     int a[9][9];
     for (int i = 0; i < 9; i++)
     {
@@ -428,9 +417,7 @@ begin:
     }
     if (isCorrect(a) || count > 10000)
     {
-        //     cout << "Exit with ";
-        // //     // cout << filled;
-        //     cout<< " filled and count " << count << "\n";
+        cout<<"Answer";
         cout << endl;
         printSudo(a);
     }
