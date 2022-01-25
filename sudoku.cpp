@@ -1,3 +1,7 @@
+/*
+**Take input as 9*9 matrix and fill 0 where box is blank
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 // int filled = 0;
