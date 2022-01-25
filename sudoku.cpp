@@ -8,6 +8,10 @@ bool isInRow(int a[9][9], int i, int x)
     {
         if (a[i][j] == x)
         {
+
+
+
+            
             return true;
         }
     }
@@ -140,7 +144,7 @@ void fillCol(int a[9][9], int j)
         return;
     }
 }
-//This function returns true if x is not present in i-th row but 
+//This function returns true if x is not present in i-th row but
 //present in other rows within its smaller matrix
 bool checkRow(int a[9][9], int i, int x)
 {
@@ -162,7 +166,7 @@ bool checkRow(int a[9][9], int i, int x)
     }
     return true;
 }
-//This function returns true if x is not present in j-th column but 
+//This function returns true if x is not present in j-th column but
 //present in other columnss within its smaller matrix
 
 bool checkCol(int a[9][9], int j, int x)
@@ -212,12 +216,12 @@ void printSudo(int a[9][9])
     }
 }
 //This returns true if x is not present in i-th row but
-// present in other rows within its smaller matrix 
+// present in other rows within its smaller matrix
 //AND in i-th row two positions are filled within its smaller matrix
 
 //This returns true if x is not present in j-th column but
-// present in other columns within its smaller matrix 
-//AND in j-th columns two positions are filled within its smaller matrix 
+// present in other columns within its smaller matrix
+//AND in j-th columns two positions are filled within its smaller matrix
 bool checkSpecial(int a[9][9], int i, int j, int x)
 {
     if (checkRow(a, i, x))
@@ -265,7 +269,6 @@ bool checkSpecial(int a[9][9], int i, int j, int x)
     return false;
 }
 //This is similar to checkSpecial2()
-
 
 bool checkSpecial2(int a[9][9], int i, int j, int x)
 {
@@ -338,7 +341,6 @@ bool checkSpecial2(int a[9][9], int i, int j, int x)
                 c++;
             }
         }
-        
     }
     if (c == 3)
     {
@@ -348,26 +350,23 @@ bool checkSpecial2(int a[9][9], int i, int j, int x)
 }
 //This returns true if x can not be filled at any other position
 
-
-bool checkSpecial3(int a[9][9],int i, int j, int x)
+bool checkSpecial3(int a[9][9], int i, int j, int x)
 {
     int m = (i / 3) * 3, n = (j / 3) * 3;
-    int c=0;
-    for (int p = m; p < m+3; p++)
+    int c = 0;
+    for (int p = m; p < m + 3; p++)
     {
-        for (int q = n; q < n+3; q++)
+        for (int q = n; q < n + 3; q++)
         {
-            if ((a[p][q]||isInRow(a,p,x)||isInCol(a,q,x))&&(p!=i||q!=j))
+            if ((a[p][q] || isInRow(a, p, x) || isInCol(a, q, x)) && (p != i || q != j))
             {
                 c++;
             }
-            
         }
-        
     }
-    if (c==8&&(!isInCol(a,j,x))&&(!isInRow(a,i,x)))
+    if (c == 8 && (!isInCol(a, j, x)) && (!isInRow(a, i, x)))
     {
-        return true ;
+        return true;
     }
     return false;
 }
@@ -389,11 +388,10 @@ int main()
     {
         for (int j = 0; j < 9; j++)
         {
-            cin>>a[i][j];
+            cin >> a[i][j];
         }
-        
     }
-    
+
     int count = 0;
 
 begin:
@@ -415,7 +413,7 @@ begin:
                             // // return 0;
                         }
                     }
-                    if(checkSpecial3(a,i,j,k)&&(!isInSmallMatrix(a, i, j, k)))
+                    if (checkSpecial3(a, i, j, k) && (!isInSmallMatrix(a, i, j, k)))
                     {
                         if (!a[i][j])
                         {
@@ -426,14 +424,14 @@ begin:
                     fillCol(a, j);
                 }
         }
-    count++;
+        count++;
     }
     if (isCorrect(a) || count > 10000)
     {
-    //     cout << "Exit with ";
-    // //     // cout << filled; 
-    //     cout<< " filled and count " << count << "\n";
-        cout<<endl;
+        //     cout << "Exit with ";
+        // //     // cout << filled;
+        //     cout<< " filled and count " << count << "\n";
+        cout << endl;
         printSudo(a);
     }
     else

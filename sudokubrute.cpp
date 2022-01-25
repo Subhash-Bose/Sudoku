@@ -315,7 +315,6 @@ bool checkSpecial2(int a[9][9], int i, int j, int x)
                 c++;
             }
         }
-        
     }
     if (c == 3)
     {
@@ -323,25 +322,23 @@ bool checkSpecial2(int a[9][9], int i, int j, int x)
     }
     return false;
 }
-bool checkSpecial3(int a[9][9],int i, int j, int x)
+bool checkSpecial3(int a[9][9], int i, int j, int x)
 {
     int m = (i / 3) * 3, n = (j / 3) * 3;
-    int c=0;
-    for (int p = m; p < m+3; p++)
+    int c = 0;
+    for (int p = m; p < m + 3; p++)
     {
-        for (int q = n; q < n+3; q++)
+        for (int q = n; q < n + 3; q++)
         {
-            if ((a[p][q]||isInRow(a,p,x)||isInCol(a,q,x))&&(p!=i||q!=j))
+            if ((a[p][q] || isInRow(a, p, x) || isInCol(a, q, x)) && (p != i || q != j))
             {
                 c++;
             }
-            
         }
-        
     }
-    if (c==8&&(!isInCol(a,j,x))&&(!isInRow(a,i,x)))
+    if (c == 8 && (!isInCol(a, j, x)) && (!isInRow(a, i, x)))
     {
-        return true ;
+        return true;
     }
     return false;
 }
@@ -363,9 +360,8 @@ int main()
     {
         for (int j = 0; j < 9; j++)
         {
-            cin>>a[i][j];
+            cin >> a[i][j];
         }
-        
     }
     int count = 0;
 
@@ -397,22 +393,22 @@ begin:
                             // return 0;
                         }
                     }
-                    else if(checkSpecial3(a,i,j,k)&&(!isInSmallMatrix(a, i, j, k)))
+                    else if (checkSpecial3(a, i, j, k) && (!isInSmallMatrix(a, i, j, k)))
                     {
                         if (!a[i][j])
                         {
                             a[i][j] = k;
                             filled++;
-                        //     cout << "position is " << i + 1 << " " << j + 1 << endl;
-                        //     printSudo(a);
-                        //     return 0;
+                            //     cout << "position is " << i + 1 << " " << j + 1 << endl;
+                            //     printSudo(a);
+                            //     return 0;
                         }
                     }
                     fillRow(a, i);
                     fillCol(a, j);
                 }
         }
-    count++;
+        count++;
     }
     if (isCorrect(a) || count > 1000)
     {
