@@ -1,17 +1,27 @@
+/*
+**Take input as 9*9 matrix and fill 0 where box is blank
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
-int filled = 0;
+// int filled = 0;
+//This function checks if x ix present in i-th row
 bool isInRow(int a[9][9], int i, int x)
 {
     for (int j = 0; j < 9; j++)
     {
         if (a[i][j] == x)
         {
+
+
+
+            
             return true;
         }
     }
     return false;
 }
+//This function checks if x is present in j-th column
 bool isInCol(int a[9][9], int j, int x)
 {
     for (int i = 0; i < 9; i++)
@@ -23,6 +33,7 @@ bool isInCol(int a[9][9], int j, int x)
     }
     return false;
 }
+//This funtion checks if x is present in smaller matrix containing index (i,j)
 bool isInSmallMatrix(int a[9][9], int i, int j, int x)
 {
     int m = (i / 3) * 3;
@@ -39,6 +50,7 @@ bool isInSmallMatrix(int a[9][9], int i, int j, int x)
     }
     return false;
 }
+//This funtion checks if the sudoku has been filled completely and correctly
 bool isCorrect(int a[9][9])
 {
     for (int i = 0; i < 9; i++)
@@ -90,6 +102,7 @@ bool isCorrect(int a[9][9])
     }
     return true;
 }
+//This funtion fills that row which have only one space left
 void fillRow(int a[9][9], int i)
 {
     int count = 0, pos, sum = 0;
@@ -104,7 +117,7 @@ void fillRow(int a[9][9], int i)
     }
     if (count == 1)
     {
-        filled++;
+        // filled++;
         a[i][pos] = 45 - sum;
     }
     else
@@ -112,6 +125,7 @@ void fillRow(int a[9][9], int i)
         return;
     }
 }
+//This funtion fills that column which have only one space left
 void fillCol(int a[9][9], int j)
 {
     int count = 0, pos, sum = 0;
@@ -126,7 +140,7 @@ void fillCol(int a[9][9], int j)
     }
     if (count == 1)
     {
-        filled++;
+        // filled++;
         a[pos][j] = 45 - sum;
     }
     else
@@ -134,6 +148,8 @@ void fillCol(int a[9][9], int j)
         return;
     }
 }
+//This function returns true if x is not present in i-th row but
+//present in other rows within its smaller matrix
 bool checkRow(int a[9][9], int i, int x)
 {
     int m = (i / 3) * 3;
@@ -154,6 +170,9 @@ bool checkRow(int a[9][9], int i, int x)
     }
     return true;
 }
+//This function returns true if x is not present in j-th column but
+//present in other columnss within its smaller matrix
+
 bool checkCol(int a[9][9], int j, int x)
 {
     int m = (j / 3) * 3;
@@ -174,6 +193,8 @@ bool checkCol(int a[9][9], int j, int x)
     }
     return true;
 }
+//This function prints the current sudoku state
+
 void printSudo(int a[9][9])
 {
     for (int i = 0; i < 9; i++)
@@ -198,6 +219,13 @@ void printSudo(int a[9][9])
         cout << "\n";
     }
 }
+//This returns true if x is not present in i-th row but
+// present in other rows within its smaller matrix
+//AND in i-th row two positions are filled within its smaller matrix
+
+//This returns true if x is not present in j-th column but
+// present in other columns within its smaller matrix
+//AND in j-th columns two positions are filled within its smaller matrix
 bool checkSpecial(int a[9][9], int i, int j, int x)
 {
     if (checkRow(a, i, x))
@@ -244,6 +272,8 @@ bool checkSpecial(int a[9][9], int i, int j, int x)
     }
     return false;
 }
+//This is similar to checkSpecial2()
+
 bool checkSpecial2(int a[9][9], int i, int j, int x)
 {
     int m = (i / 3) * 3, n = (j / 3) * 3;
@@ -322,6 +352,8 @@ bool checkSpecial2(int a[9][9], int i, int j, int x)
     }
     return false;
 }
+//This returns true if x can not be filled at any other position
+
 bool checkSpecial3(int a[9][9], int i, int j, int x)
 {
     int m = (i / 3) * 3, n = (j / 3) * 3;
@@ -344,17 +376,6 @@ bool checkSpecial3(int a[9][9], int i, int j, int x)
 }
 int main()
 {
-    // int a[9][9] = {
-    //     {5, 4, 0, 0, 2, 0, 8, 0, 6},
-    //     {0, 1, 9, 0, 0, 7, 0, 0, 3},
-    //     {0, 0, 0, 3, 0, 0, 2, 1, 0},
-    //     {9, 0, 0, 4, 6, 5, 0, 2, 0},
-    //     {0, 0, 1, 0, 0, 0, 6, 0, 4},
-    //     {6, 0, 4, 0, 3, 2, 0, 8, 0},
-    //     {0, 6, 0, 0, 0, 0, 1, 9, 0},
-    //     {4, 0, 2, 0, 0, 9, 0, 0, 5},
-    //     {0, 9, 0, 0, 7, 0, 4, 0, 2},
-    // };
     int a[9][9];
     for (int i = 0; i < 9; i++)
     {
@@ -363,6 +384,7 @@ int main()
             cin >> a[i][j];
         }
     }
+
     int count = 0;
 
 begin:
@@ -373,35 +395,22 @@ begin:
             if (!a[i][j])
                 for (int k = 1; k <= 9; k++)
                 {
-                    // cout<<"checking "<<k<<endl;
-                    // cout<<"i= "<<i+1<<" j= "<<j+1<<"\n";
-                    // cout<<checkRow(a,i,k)<<"row \n";
-                    // cout<<checkCol(a,j,k)<<" col\n";
-                    // cout<<isInSmallMatrix(a,i,j,k)<<" matrix\n";
-                    // cout<<checkSpecial2(a,i,j,k)<<" special2\n";
-                    // cout<<checkSpecial(a,i,j,k)<<" special\n";
-                    // printSudo(a);
-                    // return 0;
-                    if ((checkRow(a, i, k) && checkCol(a, j, k) && (!isInSmallMatrix(a, i, j, k))) || (((checkSpecial(a, i, j, k) || checkSpecial2(a, i, j, k)) && (!isInSmallMatrix(a, i, j, k)))))
+                    // if ((checkRow(a, i, k) && checkCol(a, j, k) && (!isInSmallMatrix(a, i, j, k))) || (((checkSpecial(a, i, j, k) || checkSpecial2(a, i, j, k)) && (!isInSmallMatrix(a, i, j, k)))))
+                    // {
+                    //     if (!a[i][j])
+                    //     {
+                    //         a[i][j] = k;
+                    //         // filled++;
+                    //         // cout << "position is " << i + 1 << " " << j + 1 << endl;
+                    //         // printSudo(a);
+                    //         // // return 0;
+                    //     }
+                    // }
+                    if (checkSpecial3(a, i, j, k) && (!isInSmallMatrix(a, i, j, k)))
                     {
                         if (!a[i][j])
                         {
                             a[i][j] = k;
-                            filled++;
-                            // cout << "position is " << i + 1 << " " << j + 1 << endl;
-                            // printSudo(a);
-                            // return 0;
-                        }
-                    }
-                    else if (checkSpecial3(a, i, j, k) && (!isInSmallMatrix(a, i, j, k)))
-                    {
-                        if (!a[i][j])
-                        {
-                            a[i][j] = k;
-                            filled++;
-                            //     cout << "position is " << i + 1 << " " << j + 1 << endl;
-                            //     printSudo(a);
-                            //     return 0;
                         }
                     }
                     fillRow(a, i);
@@ -410,10 +419,10 @@ begin:
         }
         count++;
     }
-    if (isCorrect(a) || count > 1000)
+    if (isCorrect(a) || count > 10000)
     {
-        // cout << "Exit with " << filled << " filled and count " << count << "\n";
-        cout<<"Answer is\n";
+        cout<<"Answer";
+        cout << endl;
         printSudo(a);
     }
     else
